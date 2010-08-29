@@ -1,11 +1,11 @@
-class PathsOfGloryGenerator < Rails::Generator::Base
-  def manifest
-    record do |m|
-      m.directory 'db/migrate'
-      m.file "20100311101933_create_achievements.rb", "db/migrate/20100311101933_create_achievements.rb"
-    end
-  end
+class PathsOfGloryGenerator < Rails::Generators::Base
+  source_root File.expand_path('../templates', __FILE__)
   
+  def generate
+    #directory 'db/migrate'
+    copy_file "20100311101933_create_achievements.rb", "db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_achievements.rb"
+  end
+
   def after_generate
     puts "
 
@@ -16,7 +16,7 @@ Now, add 'include Achievements' to your User model:
     class User < ActiveRecord::Base
       include Achievements
     end
-    
+
 and add 'app/modeles/achievements' to your load paths:
 
     config.load_paths += \%\W( \#\{Rails.root\}/app/models/achievements )
@@ -27,7 +27,7 @@ and run:
 
 To generate a new Achievement, run:
 
-    ./script/generate achievement Glory
+    rails generate achievement Glory
 
 where 'Glory' is the name of the achievement.
 

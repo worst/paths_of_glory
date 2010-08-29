@@ -12,7 +12,7 @@ class <%= class_name %> < Achievement
   # def self.award_achievements_for(user)
   #   return unless user
   #   levels.each do |level|
-  #     if user.not.has_achievement?(self, level[:level]) and thing_to_check(user) >= level[:quota]
+  #     if !user.has_achievement?(self, level[:level]) and thing_to_check(user) >= level[:quota]
   #       user.award_achievement(self, level[:level])
   #     end
   #   end

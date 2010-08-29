@@ -1,5 +1,0 @@
-Description:
-    Creates a migration to create a table to store achievements called "achievements"
-    
-Examples:
-    `./script/generate paths_of_glory`
