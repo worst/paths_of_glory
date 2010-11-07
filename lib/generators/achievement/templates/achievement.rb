@@ -25,4 +25,15 @@ class <%= class_name %> < Achievement
   #   user.award_achievement(self)
   # end
   
+  # Change to reflect the purpose of this achievement.
+  def self.description
+    'An achievement description.'
+  end
+  
+  # Change the image to use for the achievement.
+  #  Be sure to include this file in Rails.root/public/images
+  def self.image
+    'achievement-default.png'
+  end
+  
 end
