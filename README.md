@@ -1,3 +1,5 @@
+**Note: Only the rails3 branch is being actively developed.**
+
 Paths of Glory
 ==============
 
