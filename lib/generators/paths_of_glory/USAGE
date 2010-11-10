@@ -1,8 +1,9 @@
 Description:
-    Explain the generator
+    The paths_of_glory generator creates the migration for the achievements
+    table and copies over the default achievement image.
 
 Example:
-    rails generate paths_of_glory Thing
+    rails generate paths_of_glory
 
-    This will create:
-        what/will/it/create
+        Migration:  db/migrate/TIMESTAMP_create_achievements.rb
+        Image:      public/images/achievement-default.png

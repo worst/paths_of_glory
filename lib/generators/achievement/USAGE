@@ -1,8 +1,12 @@
 Description:
-    Explain the generator
+    The achievement generator creates a new achievement class and an observer.
+    
+    The generator takes two arguments. The first is the name of the achievement
+    class. The second is the name of the model to observe. Both arguments are
+    required.
 
 Example:
-    rails generate achievement Thing
+    rails generate achievement Glory Post
 
-    This will create:
-        what/will/it/create
+        Model:    app/models/achievements/glory.rb
+        Observer: app/models/achievements/glory_observer.rb
