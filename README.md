@@ -69,9 +69,9 @@ The Observer
 
 The model observer classes will determine when to check for awarding an achievement. As an example, if the class is observing a `Comment` model, then you can check if an achievement needs to be awarded when a comment is saved:
 
-  def after_save(comment)
-    SomeCommentAchievement.award_achievements_for(comment.user) unless comment.new_record?
-  end
+    def after_save(comment)
+      SomeCommentAchievement.award_achievements_for(comment.user) unless comment.new_record?
+    end
     
 Sample App
 ==========
