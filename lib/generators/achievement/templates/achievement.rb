@@ -1,11 +1,13 @@
 class <%= class_name %> < Achievement
   
+  # The required quotas to meet for each achievement level.
   # level 1, :quota => 5
   # level 2, :quota => 10
   # level 3, :quota => 30
   # level 4, :quota => 100
   # level 5, :quota => 500
   
+  # Return the value that needs to be checked against the quotas
   # set_thing_to_check { |user| ... }
 
   # Comment out below for multi-level achievements

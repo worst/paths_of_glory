@@ -1,24 +1,23 @@
-Paths of Glory
+Paths of Glory - On the road to achievements!
 ==============
-
-Paths of Glory sets you on the road to achievements!
 
 In short, it's a re-usable model for creating an achievement system.
 
-It's extracted from http://peertester.com and inspired by: http://stackoverflow.com/questions/885277/how-to-implement-an-achievement-system-in-ror
+It's extracted from http://peertester.com and inspired by: http://stackoverflow.com/questions/885277/how-to-implement-an-achievement-system-in-ror.
 
-
+**Note:** This is a fork of the original projects by [Paul Campbell](https://github.com/paulca) which works with Rails 3. Most of the core foundation can be accredited to the origin author.
 
 Installation
 ============
 
-Paths of Glory is easy to install.
-
-Add this to your Gemfile:
+Update your Gemfile and run `bundle install`:
   
     gem 'paths_of_glory', :git => 'git://github.com/raid5/paths_of_glory.git', :branch => 'rails3'
+    
+Setup
+=====
 
-Then generate the migration:
+Generate the migration:
 
     rails generate paths_of_glory
 
@@ -26,38 +25,57 @@ And run the migration:
 
     rake db:migrate
     
-This creates the tables.
-
-Then, in your User model:
+This creates the required table. Then, in your User model add the following include:
 
     class User < ActiveRecord::Base
       include Achievements
     end
 
-and in application.rb, add app/models/achievements to your load path:
+In your application.rb, modify your autoload path:
 
     config.autoload_paths += %W( #{Rails.root}/app/models/achievements )
 
-Basic Usage
-===========
+Usage
+=====
 
 Paths of Glory gives you access to a DSL to generate achievements. Achievements can have multiple levels or can just be standalone achievements.
 
-The pattern is basically:
+Create a new achievement with the name Glory, which observers the User model:
 
-Create an achievement:
-
-    rails generate achievement Glory
+    rails generate achievement Glory User
     
-This gives you `app/models/achievements/glory.rb` and `app/models/achievements/glory_observer.rb` with some bootstrapped code.
+This gives you `app/models/achievements/glory.rb` and `app/models/achievements/glory_observer.rb` with some bootstrapped code. Edit these files to meet your needs. Finally, you will need to activate the observer, by adding `:glory_observer` to your list of observers in `application.rb`.
 
-You're on your own after that. Have fun!
+    config.active_record.observers = :glory_observer, :some_other_observer
+    
+The Achievement
+===============
 
+Once-off achievements will be awarded the first time the specified requirement is met.
 
-Running the tests
-=================
+On the other hand, you can also specify multi-level achievements which are awarded when the specified quotes are met. You first define the quotas:
 
-You can run the tests by running:
+    level 1, :quota => 10
+    level 2, :quota => 20
+    
+Then establish what needs to be checked against the quotes. As an example, the number of comments a user has made:
 
-    rake
+    set_thing_to_check { |user| user.comments.count }
+    
+Finally, when these quotes are met, the achievement will be awarded.
+
+The Observer
+============
+
+The model observer classes will determine when to check for awarding an achievement. As an example, if the class is observing a `Comment` model, then you can check if an achievement needs to be awarded when a comment is saved:
+
+  def after_save(comment)
+    SomeCommentAchievement.award_achievements_for(comment.user) unless comment.new_record?
+  end
+    
+Sample App
+==========
+
+Also, checkout my [sample app](https://github.com/raid5/paths_of_glory-sample_app) for a working example.
+
     
