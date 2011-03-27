@@ -1,6 +1,7 @@
 class Achievement < ActiveRecord::Base
 
   belongs_to :achievable, :polymorphic => true
+  belongs_to :ref, :polymorphic => true
   
   scope :recent, :order => "created_at desc"
   scope :kind_of, lambda { |type| {:conditions => {:type => type.to_s}}} do

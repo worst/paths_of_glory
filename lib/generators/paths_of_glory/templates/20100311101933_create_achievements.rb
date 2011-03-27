@@ -5,6 +5,8 @@ class CreateAchievements < ActiveRecord::Migration
       t.integer :level
       t.integer :achievable_id
       t.string  :achievable_type
+      t.integer :ref_id
+      t.string  :ref_type
 
       t.timestamps
     end
