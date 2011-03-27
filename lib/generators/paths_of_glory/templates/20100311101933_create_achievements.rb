@@ -5,7 +5,6 @@ class CreateAchievements < ActiveRecord::Migration
       t.integer :level
       t.integer :achievable_id
       t.string  :achievable_type
-      t.boolean :notified, :default => false
 
       t.timestamps
     end
