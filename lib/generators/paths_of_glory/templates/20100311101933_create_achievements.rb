@@ -3,8 +3,10 @@ class CreateAchievements < ActiveRecord::Migration
     create_table :achievements do |t|
       t.string  :type
       t.integer :level
-      t.integer :user_id
-      t.boolean :notified, :default => false
+      t.integer :achievable_id
+      t.string  :achievable_type
+      t.integer :ref_id
+      t.string  :ref_type
 
       t.timestamps
     end
