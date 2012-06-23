@@ -1,4 +1,5 @@
-class Achievement < ActiveRecord::Base
+class Achievement
+  include Mongo::Document
 
   belongs_to :achievable, :polymorphic => true
   belongs_to :ref, :polymorphic => true

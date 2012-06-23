@@ -1,4 +1,4 @@
-class <%= class_name %>Observer < ActiveRecord::Observer
+class <%= class_name %>Observer < Mongoid::Observer
   observe :<%= model_name.downcase.underscore %>
   
   def after_save(<%= model_name.downcase.underscore %>)
